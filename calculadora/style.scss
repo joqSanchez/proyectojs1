@@ -1,124 +1,149 @@
+// ================== RESETEO GENERAL ==================
 * {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  font-family: sans-serif;
-  transition: all 0.8s ease;
+  padding: 0;               // Quita el relleno por defecto de todos los elementos
+  margin: 0;                // Quita el margen por defecto de todos los elementos
+  box-sizing: border-box;   // Hace que el ancho y alto incluyan el padding y borde
+  font-family: sans-serif;  // Aplica una fuente sin serif a todo el documento
+  transition: all 0.8s ease; // Transición suave para todos los cambios CSS
 }
 
 body {
-  background: linear-gradient(45deg, #f06291, #fffde7);
+  background: linear-gradient(45deg, #f06291, #fffde7); // Fondo degradado diagonal (rosa a beige)
 }
 
+// ================== CONTENEDOR PRINCIPAL ==================
 .container {
-    height: 100vh;
-    width: 10vw;
-    display: flex;
-    align-items: center;
-    justify-self: center;
-    flex-wrap: wrap;
+  height: 100vh;       // Altura total de la pantalla
+  width: 10vw;         // Ancho 10% del viewport (puede ser muy pequeño para la calculadora)
+  display: flex;       // Activa Flexbox para los hijos
+  align-items: center; // Centra verticalmente los hijos dentro del contenedor
+  justify-self: center;// Solo funciona en Grid, aquí no afecta nada
+  flex-wrap: wrap;     // Permite que los elementos hijos se envuelvan en varias filas
 }
 
+// ================== CALCULADORA ==================
 .calculator {
-    position: relative;
-    height: auto;
-    width: auto;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 0 30px rgba(187, 130, 130);
-    background-color: #fff;
-    #display{
-        color: red;
-        margin: 0 10px;
-        height: 120px;
-        width: auto;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-end;
-        font-size: 30px;
-        margin-bottom: 20px;
-        font-weight: 800;
+  position: relative;                     // Para posicionar elementos hijos relativamente
+  height: auto;                          // Altura automática según contenido
+  width: auto;                           // Ancho automático según contenido
+  padding: 20px;                        // Espacio interno alrededor de todo el contenido
+  border-radius: 10px;                  // Bordes redondeados de 10px
+  box-shadow: 0 0 30px rgba(187,130,130,0.6); // Sombra suave alrededor
+  background-color: #fff;               // Fondo blanco
+
+  // ================== VISOR ==================
+  #display {
+    color: red;                        // Texto rojo para el resultado
+    margin: 0 10px;                   // Margen horizontal de 10px
+    height: 120px;                    // Alto fijo para visor
+    width: auto;                     // Ancho automático
+    display: flex;                   // Flexbox para alinear contenido interno
+    align-items: flex-end;           // Alinea contenido al fondo verticalmente
+    justify-content: flex-end;       // Alinea contenido a la derecha
+    font-size: 30px;                 // Tamaño de letra grande
+    margin-bottom: 20px;             // Espacio debajo del visor
+    font-weight: 800;                // Texto muy negrita
+  }
+
+  // ================== BOTÓN IGUAL ==================
+  #equal {
+    height: 130px;                   // Botón más alto para destacar
+  }
+
+  // ================== BOTÓN BORRAR ==================
+  #clear {
+    background-color: #5145fc;       // Fondo azul fuerte
+    color: #fc4553;                  // Texto rojo brillante
+  }
+
+  // ================== BOTONES NÚMEROS ==================
+  .btn-number {
+    background-color: #c3eaff;       // Fondo celeste claro
+    color: #000000;                  // Texto negro
+  }
+
+  // ================== BOTÓN IGUAL (COLOR) ==================
+  .btn-equal {
+    background-color: #adf9e7;       // Fondo verde agua claro
+    color: #000;                     // Texto negro
+  }
+
+  // ================== MODO OSCURO ==================
+  &.dark {
+    background-color: #000;          // Fondo negro
+
+    #display {
+      color: #f8fafb;               // Texto casi blanco para el visor
     }
-    #equal{
-        height: 130px;
+
+    #clear {
+      background-color: #4c35aa;    // Fondo morado oscuro para borrar
+      color: white;                 // Texto blanco
     }
-    #clear{
-        background-color: #5145fc;
-        color: #fc4553;
+
+    .btn-number {
+      background-color: #8efda6;    // Fondo verde claro para números
+      color: black;                 // Texto negro
+      font-weight: 600;             // Negrita media
     }
-    .btn-number{
-        background-color: #c3eaff;
-        color: #000000;
+
+    .btn-operator {
+      background-color: #f0db4f;    // Fondo amarillo para operadores (+, -, *, /)
+      color: #aa00a4;               // Texto morado fuerte
     }
-    .btn-equal{
-        background-color: #adf9e7;
-        color: #000;
+
+    .btn-equal {
+      background-color: #f23b00;    // Fondo rojo brillante para igual
+      color: #ffffff;               // Texto blanco
     }
-    &.dark{
-        background-color: #000;
-        #display{
-            color: #f8fafb;
-        }
-        #clear{
-            background-color: #4c35aa;
-            color: white;
-        }
-        .btn-number{
-            background-color: #8efda6;
-            color: black;
-            font-weight: 600;
-        }
-        .btn-operator{
-            background-color: #f0db4f;
-            color: #aa00a4;
-        }
-        .btn-equal{
-            background-color: #f23b00;
-            color: #ffffff;
-        }
-    }
+  }
 }
 
-.theme-toggler{
-    position: absolute;
-    top: 30px;
-    right: 30px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1;
-    &::before{
-        content: '';
-        position: absolute;
-        height: 30px;
-        width: 30px;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        border-radius: 50%;
-        background-color: #333;
-        z-index: -1;
-    }
+// ================== BOTÓN CAMBIO DE TEMA ==================
+.theme-toggler {
+  position: absolute;               // Posición absoluta respecto al contenedor padre
+  top: 30px;                       // Separado 30px de la parte superior
+  right: 30px;                     // Separado 30px de la derecha
+  color: #fff;                     // Texto blanco
+  cursor: pointer;                 // Cursor mano para indicar clickeable
+  z-index: 1;                     // Por encima de otros elementos
+
+  // Círculo detrás del botón con pseudo-elemento
+  &::before {
+    content: '';                  // Elemento vacío solo para estilo
+    position: absolute;           // Absoluto dentro del botón
+    height: 30px;                 // Alto del círculo
+    width: 30px;                  // Ancho del círculo
+    top: 50%;                    // Centrado verticalmente
+    transform: translate(-50%, -50%); // Ajusta posición para centrar
+    border-radius: 50%;          // Forma redonda
+    background-color: #333;      // Color gris oscuro
+    z-index: -1;                 // Detrás del texto del botón
+  }
 }
 
-.theme-toggler.active{
-    color: #333;
-    &::before{
-        background-color: #fff;
-    }
+// Cuando el botón está activo (modo claro)
+.theme-toggler.active {
+  color: #333;                   // Texto gris oscuro
+
+  &::before {
+    background-color: #fff;      // Círculo blanco detrás
+  }
 }
 
-button{
-    height: 60px;
-    width: 60px;
-    border: 0;
-    border-radius: 30px;
-    margin: 5px;
-    font-size: 20px;
-    cursor: pointer;
-    transition: all 200ms ease;
-    &:hover{
-        transform: scale(1.1);
-    }
+// ================== ESTILO GENERAL DE BOTONES ==================
+button {
+  height: 60px;                 // Altura fija para todos los botones
+  width: 60px;                  // Ancho fijo para botones cuadrado redondeado
+  border: 0;                   // Sin borde visible
+  border-radius: 30px;         // Botones redondos (círculo)
+  margin: 5px;                 // Separación entre botones
+  font-size: 20px;             // Tamaño de texto grande
+  cursor: pointer;             // Cursor mano al pasar encima
+  transition: all 200ms ease;  // Transición suave para transformaciones
+
+  // Efecto al pasar el mouse
+  &:hover {
+    transform: scale(1.1);     // Agranda ligeramente el botón
+  }
 }
-
-
-
